@@ -3,8 +3,8 @@ import { RemoteInfo } from 'dgram';
 import { resolve } from 'path';
 import fs from 'fs';
 import KCP from 'node-kcp-token';
-import Packet, { PacketName } from './Packet';
-import Logger, { VerboseLevel } from '../../util/Logger';
+import Packet from './Packet';
+import Logger from '../../util/Logger';
 import defaultHandler from '../packets/PacketHandler';
 import Account from '../../db/Account';
 import Player from '../../db/Player';
@@ -64,7 +64,7 @@ export default class Session {
     }
 
     public async handlePacket(packet: Packet) {
-        if (Logger.VERBOSE_LEVEL >= VerboseLevel.WARNS) this.c.log(packet.protoName)
+        this.c.debug(packet.protoName)
         this.c.verbL(packet.body);
         this.c.verbH(packet.rawData);
 
@@ -100,7 +100,7 @@ export default class Session {
         this.c.verbL(data);
         this.c.verbH(encodedBuffer);
         if (!encodedBuffer) this.c.error("encodedBuffer is undefined");
-        if (Logger.VERBOSE_LEVEL >= VerboseLevel.WARNS) this.c.log(typeName);
+        this.c.debug(typeName);
         //todo: might want to regen the ts-proto types with env = node
         this.kcpobj.send(packet);
     }

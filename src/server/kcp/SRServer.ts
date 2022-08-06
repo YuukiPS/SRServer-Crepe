@@ -24,8 +24,7 @@ export default class SRServer {
     }
 
     public start() {
-        this.udpSocket.bind(Config.GAMESERVER.SERVER_PORT, "0.0.0.0");
-
+        this.udpSocket.bind(Config.GAMESERVER.SERVER_PORT, Config.GAMESERVER.SERVER_IP_BIND);
         this.udpSocket.on('listening', () => this.onListening());
         this.udpSocket.on('message', (d, i) => this.onMessage(d, i));
         this.udpSocket.on('error', (e) => this.onError(e));
@@ -81,6 +80,6 @@ export default class SRServer {
     }
 
     private async onListening() {
-        c.log(`Listening on 0.0.0.0:${Config.GAMESERVER.SERVER_PORT}`);
+        c.log(`Listening on ${Config.GAMESERVER.SERVER_IP_BIND}:${Config.GAMESERVER.SERVER_PORT}`);
     }
 }

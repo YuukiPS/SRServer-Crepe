@@ -3,7 +3,7 @@ import https from 'https';
 import fs from 'fs';
 import { resolve } from 'path';
 import Config from '../util/Config';
-import Logger, { VerboseLevel } from '../util/Logger';
+import Logger from '../util/Logger';
 const c = new Logger("HTTP", "cyan");
 
 function r(...args: string[]) {
@@ -24,7 +24,7 @@ export default class HttpServer {
         this.server.use(express.json());
         this.server.use('/asb', express.static(resolve(__dirname, './routes/asb')));
         this.server.route('/*').all((req, res) => {
-            if (Logger.VERBOSE_LEVEL > VerboseLevel.WARNS) c.log(`${req.method} ${req.url}`);
+            c.debug(`${req.method} ${req.url}`);
             import(`./routes${req.url.split('?')[0]}`).then(async r => {
                 await r.default(req, res);
             }).catch(err => {
@@ -39,6 +39,7 @@ export default class HttpServer {
 
     public start(): void {
         https.createServer(HTTPS_CONFIG, this.server).listen(Config.HTTP.HTTP_PORT, Config.HTTP.HTTP_PORT);
+        // for http only
         this.server.listen(80, Config.HTTP.HTTP_HOST, () => {
             c.log(`Listening on ${Config.HTTP.HTTP_HOST}:${Config.HTTP.HTTP_PORT}`);
         });

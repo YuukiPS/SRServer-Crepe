@@ -4,7 +4,7 @@ import { VerboseLevel } from './Logger';
 
 const DEFAULT_CONFIG = {
     // General
-    VERBOSE_LEVEL: 1,
+    VERBOSE_LEVEL: 0,
 
     // MongoDB
     MONGO_URI: "mongodb://0.0.0.0:27017/crepesr",
@@ -24,7 +24,9 @@ const DEFAULT_CONFIG = {
     // GameServer
     GAMESERVER: {
         SERVER_IP: "127.0.0.1",
-        SERVER_PORT: 22102,
+        SERVER_IP_BIND: "0.0.0.0",
+        SERVER_PORT: 22103,
+        SERVER_NAME:"CrepeSR",
         MAINTENANCE: false,
         MAINTENANCE_MSG: "Server is in maintenance mode."
     },
@@ -78,7 +80,9 @@ export default class Config {
     }[] = Config.config.DISPATCH;
     public static GAMESERVER: {
         SERVER_IP: string;
+        SERVER_IP_BIND: string;
         SERVER_PORT: number;
+        SERVER_NAME: string;
         MAINTENANCE: boolean;
         MAINTENANCE_MSG: string;
     } = Config.config.GAMESERVER;

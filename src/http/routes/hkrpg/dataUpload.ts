@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Logger, { VerboseLevel } from "../../../util/Logger";
+import Logger from "../../../util/Logger";
 const c = new Logger("dataUpload", "green");
 
 export default function handle(req: Request, res: Response) {
@@ -7,7 +7,7 @@ export default function handle(req: Request, res: Response) {
         const content = req.body[0].uploadContent;
         if (content.LogStr) {
             c.warn(content.LogStr);
-            if (Logger.VERBOSE_LEVEL == VerboseLevel.ALL) c.trail(content.StackTrace);
+            c.trail(content.StackTrace);
         }
     } catch { }
     res.send({ code: 0 });

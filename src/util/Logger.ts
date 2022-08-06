@@ -28,6 +28,7 @@ export default class Logger {
         console.log(`[${this.getDate().white.bold}] <${this.name[this.color].bold}>`, ...args);
     }
 
+    // raw
     public log(...args: string[]) {
         this.raw(...args);
     }
@@ -43,24 +44,24 @@ export default class Logger {
     }
 
     public warn(...args: string[]) {
-        if (Logger.VERBOSE_LEVEL < VerboseLevel.WARNS) return;
+        if (Config.VERBOSE_LEVEL < VerboseLevel.WARNS) return;
         console.log(`[${this.getDate().white.bold}] ${`WARN<${this.name}>`.bgYellow.bold}`, ...args);
     }
 
     public debug(...args: any) {
-        if (Logger.VERBOSE_LEVEL < VerboseLevel.ALL) return;
+        if (Config.VERBOSE_LEVEL < VerboseLevel.ALL) return;
         console.log(`[${this.getDate().white.bold}] ${`DEBUG<${this.name}>`.bgBlue.bold}`, ...args);
         this.trail(new Error().stack!.split('\n').slice(2).join('\n'));
     }
 
     public verbL(...args: any) {
-        if (Logger.VERBOSE_LEVEL < VerboseLevel.VERBL) return;
+        if (Config.VERBOSE_LEVEL < VerboseLevel.VERBL) return;
         console.log(`[${this.getDate().white.bold}] ${`VERBL<${this.name}>`.bgCyan.bold}`, ...args);
         this.trail(new Error().stack!.split('\n').slice(2).join('\n'));
     }
 
     public verbH(...args: any) {
-        if (Logger.VERBOSE_LEVEL < VerboseLevel.VERBH) return;
+        if (Config.VERBOSE_LEVEL < VerboseLevel.VERBH) return;
         console.log(`[${this.getDate().white.bold}] ${`VERBH<${this.name}>`.bgCyan.bold}`, ...args);
         this.trail(new Error().stack!.split('\n').slice(2).join('\n'));
     }

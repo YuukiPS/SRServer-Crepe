@@ -19,7 +19,7 @@ export default function handle(req: Request, res: Response) {
             dispatch_url: item.DISPATCH_URL,
             env_type: "2",
             name: item.DISPATCH_NAME,
-            title: "CrepeSR"
+            title: item.DISPATCH_NAME
         });
     });
 

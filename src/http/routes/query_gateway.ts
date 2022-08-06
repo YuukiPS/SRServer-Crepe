@@ -8,7 +8,7 @@ export default function handle(req: Request, res: Response) {
     const dataObj = Gateserver.fromPartial({
         retcode: 0,
         msg: "OK",
-        regionName: "CrepeSR",
+        regionName: Config.GAMESERVER.SERVER_NAME,
         ip: Config.GAMESERVER.SERVER_IP,
         port: Config.GAMESERVER.SERVER_PORT,
         serverDescription: "This is not BingusRail",

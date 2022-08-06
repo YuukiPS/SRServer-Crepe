@@ -1,11 +1,6 @@
-import Logger, { VerboseLevel } from "../../util/Logger";
-import protobuf, { Root } from 'protobufjs';
-import { resolve } from 'path';
+import Logger from "../../util/Logger";
 import ProtoFactory from "../../util/ProtoFactory";
 const c = new Logger("Packet")
-
-
-
 
 export default class Packet {
     public readonly cmdid: number;
@@ -26,9 +21,7 @@ export default class Packet {
                 this.body = Message.decode(this.data);
             } catch (e) {
                 c.warn(`Failed to decode ${this.protoName}`);
-                if (Logger.VERBOSE_LEVEL >= VerboseLevel.ALL) {
-                    c.error(e as Error, false);
-                }
+                c.error(e as Error, false);
                 c.debug(`Data: ${this.data.toString("hex")}`);
             }
         } else {

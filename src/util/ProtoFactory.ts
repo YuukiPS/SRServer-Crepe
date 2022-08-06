@@ -54,7 +54,7 @@ export default class ProtoFactory {
             }
         }
 
-        if (Logger.VERBOSE_LEVEL > VerboseLevel.ALL) c.log(`Initialized with ${messageTypeMap.size} types`);
+        c.log(`Initialized with ${messageTypeMap.size} types`);
 
         //c.log(this.getName(types.PlayerLoginScRsp))
         // return;
