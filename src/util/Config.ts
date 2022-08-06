@@ -28,7 +28,7 @@ const DEFAULT_CONFIG = {
         MAINTENANCE: false,
         MAINTENANCE_MSG: "Server is in maintenance mode."
     },
-    AUTO_ACCOUNT: false
+    AUTO_ACCOUNT: true
 }
 type DefaultConfig = typeof DEFAULT_CONFIG;
 
@@ -55,6 +55,7 @@ function readConfig(): any {
         console.error("Could not read config file. Creating one for you...");
         config = DEFAULT_CONFIG;
         updateConfig(config);
+        process.exit();
     }
     return config;
 }

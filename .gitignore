@@ -111,3 +111,4 @@ dist
 config.json
 src/data/*
 banners.json
+package-lock.json

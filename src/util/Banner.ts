@@ -57,7 +57,7 @@ export default class Banners {
             }
             Banners.updateConfig(config);
         } catch {
-            c.error("Could not read banners file. Creating one for you...");
+            console.error("Could not read banners file. Creating one for you...");
             Banners.updateConfig(defaultConfig);
         }
     }
